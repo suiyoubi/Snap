@@ -1,0 +1,35 @@
+PODS:
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.7.0)
+  - INSNibLoading (1.0.2)
+  - Kingfisher (4.6.3)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.2.0)
+  - Alamofire (~> 4.7)
+  - INSNibLoading
+  - Kingfisher (~> 4.1)
+
+SPEC CHECKSUMS:
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  INSNibLoading: 0244d5b9c30d4642c77b31469cbfd905e8b1efb3
+  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
+
+PODFILE CHECKSUM: 35067e1ebc0a46657537b08d8c9c977d9579d5e4
+
+COCOAPODS: 1.4.0
