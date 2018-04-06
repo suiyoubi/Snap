@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBOutlet weak var warning_label: UILabel!
     
+    let imagePickerController = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -38,12 +40,12 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func sendRegisterRequest() {
-        let username = username_tf.text
+        let username = username_tf.text?.lowercased()
         let password = password_tf.text
         let repass = repassword_tf.text
         let email = email_tf.text
         
-        let httpAddress = "http://104.199.127.227:5001/register_user"
+        let httpAddress = "http://35.230.95.204:5001/register_user"
         let headers = ["username": username!,
                        "password": password!]
         Alamofire.request(httpAddress, method: .post, headers: headers).responseString { response in
@@ -58,6 +60,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                  */
                 print("The response is:", JSON)
                 if(JSON.elementsEqual("New User added")) {
+                    let user = UserInfo.getInstace()
+                    user.updateUsername(username: (username?.lowercased())!)
                     let alert = UIAlertController(title: "Register", message: "Register Success!\nDo you want to upload your profile picture now?", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("Later", comment: "Default action"), style: .`default`, handler: { _ in
                         NSLog("The \"OK\" alert occured.")
@@ -85,7 +89,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     func actionSheetPopUp() {
-        let imagePickerController = UIImagePickerController()
+        
+        let imagePickerController = self.imagePickerController
         imagePickerController.delegate = self
         
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a Source", preferredStyle: .actionSheet)
@@ -147,86 +152,113 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     */
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        //let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
+        //let imageURL = info[UIImagePickerControllerReferenceURL] as? URL
         //imageView.image = image
+        print("hello")
+        if let imgUrl = info[UIImagePickerControllerImageURL] as? URL{
+            let imgName = imgUrl.lastPathComponent
+            let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+            let localPath = documentDirectory?.appending(imgName)
+            
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            let data = UIImagePNGRepresentation(image)! as NSData
+            data.write(toFile: localPath!, atomically: true)
+            //let imageData = NSData(contentsOfFile: localPath!)!
+            let photoURL = URL.init(fileURLWithPath: localPath!)//NSURL(fileURLWithPath: localPath!)
+           
+            if let data = UIImageJPEGRepresentation(image,1) {
+                let parameters: Parameters = [
+                    "access_token" : "YourToken"
+                ]
+                // You can change your image name here, i use NSURL image and convert into string
+                let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+                let fileName = imageURL.absoluteString
+                // Start Alamofire
+                
+                print("start upload image")
+                Alamofire.upload(
+                             multipartFormData: { multipartFormData in
+                                     // On the PHP side you can retrive the image using $_FILES["image"]["tmp_name"]
+                                multipartFormData.append(imgUrl, withName: "file")
+                                    for (key, val) in parameters {
+                                        multipartFormData.append((val as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                                         }
+                             },
+                             to: "http://35.230.95.204:5001/new_face/" + (username_tf.text?.lowercased())!,
+                             method: .post,
+                             encodingCompletion: { encodingResult in
+                                 switch encodingResult {
+                                 case .success(let upload, _, _):
+                                     upload.responseJSON { response in
+                                         if let jsonResponse = response.result.value as? [String: Any] {
+                                                print("SUCCESS")
+                                                print("$$$$$$")
+                                                print(jsonResponse)
+                                                print("$$$$$$")
+
+                                         }
+                                     }
+                                 case .failure(let encodingError):
+                                    print("FAILED")
+                                    print("$$$$$$")
+                                    print(encodingError)
+                                    print("$$$$$$")
+                                 default:
+                                    print("HAHA")
+                                }
+                                
+                         })
+                    print("Finish upload image")
+            }
+            
+            
+            print("i think its ok")
+            saveImage(image: image)
+            //uploadProfilePictureToServer(selectedImage: image, info: info)
+            picker.dismiss(animated: true, completion: nil)
+            goToMainViewController()
+            
+        } else {
+            picker.dismiss(animated: true, completion: nil)
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+            let imagePickerController = self.imagePickerController
+            imagePickerController.sourceType = .photoLibrary
+            present(imagePickerController, animated: true, completion: nil)
+        }
+        
+        /*
         print("i think its ok")
         saveImage(image: image)
         uploadProfilePictureToServer(selectedImage: image, info: info)
         picker.dismiss(animated: true, completion: nil)
         goToMainViewController()
+        */
+    }
+    
+    //MARK: - Add image to Library
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
     }
     
     func uploadProfilePictureToServer(selectedImage: UIImage, info: [String : Any]) {
-        let httpAddress = "http://104.199.127.227:5001/new_face/" + username_tf.text!
+        let httpAddress = "http://35.230.95.204:5001/new_face/" + username_tf.text!
         print("http address:" + httpAddress)
-       
+        print("TODO: impelement the photo uploading")
         
-            let parameters: Parameters = [:]
-            // You can change your image name here, i use NSURL image and convert into string
         
-       
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            for (key, value) in parameters {
-                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-            }
-            
-            if let data = imageData{
-                multipartFormData.append(data, withName: "image", fileName: "image.png", mimeType: "image/png")
-            }
-            
-        }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
-            switch result{
-            case .success(let upload, _, _):
-                upload.responseJSON { response in
-                    print("Succesfully uploaded")
-                    if let err = response.error{
-                        onError?(err)
-                        return
-                    }
-                    onCompletion?(nil)
-                }
-            case .failure(let error):
-                print("Error in upload: \(error.localizedDescription)")
-                onError?(error)
-            }
-        }
-            // Start Alamofire
-            Alamofire.upload(multipartFormData: { (multipartFormData) in
-                multipartFormData.append(UIImageJPEGRepresentation(selectedImage, 0.5)!, withName: "photo_path", fileName: self.username_tf.text!, mimeType: "image/jpeg")
-                for (key, value) in parameters {
-                    multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
-                }
-            }, to:httpAddress, method: .post)
-            { (result) in
-                switch result {
-                case .success(let upload, _, _):
-                    
-                    upload.uploadProgress(closure: { (Progress) in
-                        print("Upload Progress: \(Progress.fractionCompleted)")
-                    })
-                    
-                    upload.responseJSON { response in
-                        //self.delegate?.showSuccessAlert()
-                        print(response.request)  // original URL request
-                        print(response.response) // URL response
-                        print(response.data)     // server data
-                        print(response.result)   // result of response serialization
-                        //                        self.showSuccesAlert()
-                        //self.removeImage("frame", fileExtension: "txt")
-                        if let JSON = response.result.value {
-                            print("JSON: \(JSON)")
-                        }
-                    }
-                    
-                case .failure(let encodingError):
-                    //self.delegate?.showFailAlert()
-                    print("CHUCUOLE")
-                    print(encodingError)
-                    print("chucuole")
-                }
-                
-            }
+      
         
     }
     

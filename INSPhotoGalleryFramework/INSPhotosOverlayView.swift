@@ -138,6 +138,7 @@ open class INSPhotosOverlayView: UIView , INSPhotosOverlayViewable {
     }
     
     @objc private func actionButtonTapped(_ sender: UIBarButtonItem) {
+        print("action button tapped")
         if let currentPhoto = currentPhoto {
             currentPhoto.loadImageWithCompletionHandler({ [weak self] (image, error) -> () in
                 if let image = (image ?? currentPhoto.thumbnailImage) {

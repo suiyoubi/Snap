@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         lb_message.text = ""
         self.hideKeyboardWhenTappedAround()
+        let user = UserInfo.getInstace()
+        user.cleanUser()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,13 +34,15 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: Any) {
-        let username = tf_username.text
+        let username = tf_username.text?.lowercased()
         let password = tf_password.text
         accountAuthentification(username: username!, password: password!)
     }
     
-    func successAction() {
+    func successAction(username: String) {
         print("success!")
+        let user = UserInfo.getInstace()
+        user.updateUsername(username: username)
         performSegue(withIdentifier: "loginSegue", sender: self)
     }
     func failAction() {
@@ -50,7 +54,7 @@ class LoginViewController: UIViewController {
         print("PASSWORD:", password)
         
         
-        let httpAddress = "http://104.199.127.227:5001/login_user"
+        let httpAddress = "http://35.230.95.204:5001/login_user"
         let headers = ["username": username,
                     "password": password]
        
@@ -66,7 +70,7 @@ class LoginViewController: UIViewController {
             */
                 print("The response is:", JSON)
                 if(JSON.elementsEqual("Pass") == true) {
-                    self.successAction()
+                    self.successAction(username: username)
                 } else {
                     self.failAction()
                 }

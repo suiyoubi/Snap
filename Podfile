@@ -4,6 +4,8 @@ target 'snap' do
     pod 'INSNibLoading'
     pod 'Kingfisher', '~> 4.1'
     pod 'Alamofire', '~> 4.7'
+    pod 'TextFieldEffects'
+    pod 'SwiftyJSON'
 end
 
 use_frameworks!

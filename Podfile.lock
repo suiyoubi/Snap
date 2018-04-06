@@ -17,19 +17,25 @@ PODS:
   - Alamofire (4.7.0)
   - INSNibLoading (1.0.2)
   - Kingfisher (4.6.3)
+  - SwiftyJSON (4.0.0)
+  - TextFieldEffects (1.4.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
   - Alamofire (~> 4.7)
   - INSNibLoading
   - Kingfisher (~> 4.1)
+  - SwiftyJSON
+  - TextFieldEffects
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   INSNibLoading: 0244d5b9c30d4642c77b31469cbfd905e8b1efb3
   Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
 
-PODFILE CHECKSUM: 35067e1ebc0a46657537b08d8c9c977d9579d5e4
+PODFILE CHECKSUM: 9f7ff0c1e1bdb7d72424f565d6d21db485527470
 
 COCOAPODS: 1.4.0

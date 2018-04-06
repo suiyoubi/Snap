@@ -262,6 +262,7 @@ open class INSPhotosViewController: UIViewController, UIPageViewControllerDataSo
     }
     
     @objc private func handleSingleTapGestureRecognizer(_ gestureRecognizer: UITapGestureRecognizer) {
+        print("this is the single tap")
         overlayView.setHidden(!overlayView.view().isHidden, animated: true)
     }
     

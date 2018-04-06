@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		287E3C86130B70FD4CF2E7FE /* Pods_snap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742E86E252296D42C4292C0D /* Pods_snap.framework */; };
+		C10491C620637EB90055B07C /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10491C520637EB90055B07C /* UserInfo.swift */; };
+		C10BE78E205DC34300C84B2E /* LinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BE78D205DC34300C84B2E /* LinkViewController.swift */; };
+		C12349112072DB18006D5379 /* Amazing_Kids.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C12349102072DA5E006D5379 /* Amazing_Kids.ttf */; };
 		C18DA8CC2051DBE20050FE55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18DA8CB2051DBE20050FE55 /* AppDelegate.swift */; };
 		C18DA8CE2051DBE20050FE55 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18DA8CD2051DBE20050FE55 /* LoginViewController.swift */; };
 		C18DA8D12051DBE20050FE55 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C18DA8CF2051DBE20050FE55 /* Main.storyboard */; };
@@ -15,6 +18,7 @@
 		C18DA8D62051DBE20050FE55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C18DA8D42051DBE20050FE55 /* LaunchScreen.storyboard */; };
 		C18DA8DE2051ED970050FE55 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18DA8DD2051ED970050FE55 /* LoginTextField.swift */; };
 		C18DA8E0205201BE0050FE55 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18DA8DF205201BE0050FE55 /* MainViewController.swift */; };
+		C1B5F8B7206B01F700E3C9CE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B5F8B6206B01F700E3C9CE /* Utils.swift */; };
 		C1D411B920586A45002813D8 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D411B420586A45002813D8 /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
 		C1D411BA20586A45002813D8 /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D411B520586A45002813D8 /* DGElasticPullToRefreshView.swift */; };
 		C1D411BB20586A45002813D8 /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D411B620586A45002813D8 /* DGElasticPullToRefreshConstants.swift */; };
@@ -44,6 +48,9 @@
 /* Begin PBXFileReference section */
 		13AF6728BF834843A73E2294 /* Pods-snap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-snap.release.xcconfig"; path = "Pods/Target Support Files/Pods-snap/Pods-snap.release.xcconfig"; sourceTree = "<group>"; };
 		742E86E252296D42C4292C0D /* Pods_snap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_snap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10491C520637EB90055B07C /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		C10BE78D205DC34300C84B2E /* LinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkViewController.swift; sourceTree = "<group>"; };
+		C12349102072DA5E006D5379 /* Amazing_Kids.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Amazing_Kids.ttf; sourceTree = "<group>"; };
 		C18DA8C82051DBE20050FE55 /* snap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C18DA8CB2051DBE20050FE55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C18DA8CD2051DBE20050FE55 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +60,7 @@
 		C18DA8D72051DBE20050FE55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C18DA8DD2051ED970050FE55 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		C18DA8DF205201BE0050FE55 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C1B5F8B6206B01F700E3C9CE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C1D411B420586A45002813D8 /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
 		C1D411B520586A45002813D8 /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		C1D411B620586A45002813D8 /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
@@ -129,14 +137,17 @@
 				C1FB235F2054CC6500D941AE /* SWRevealController */,
 				C1D411B320586A45002813D8 /* DGElasticPullToRefresh */,
 				C18DA8CB2051DBE20050FE55 /* AppDelegate.swift */,
-				C1FB23642054CD4800D941AE /* Login_Register */,
 				C18DA8CF2051DBE20050FE55 /* Main.storyboard */,
+				C1FB23642054CD4800D941AE /* Login_Register */,
 				C1FB24052056057100D941AE /* Cells */,
 				C1FB23E8205603C000D941AE /* ViewControllers */,
 				C1FB236F2055D04600D941AE /* HelperFile */,
 				C18DA8D22051DBE20050FE55 /* Assets.xcassets */,
 				C18DA8D42051DBE20050FE55 /* LaunchScreen.storyboard */,
 				C18DA8D72051DBE20050FE55 /* Info.plist */,
+				C10491C520637EB90055B07C /* UserInfo.swift */,
+				C1B5F8B6206B01F700E3C9CE /* Utils.swift */,
+				C12349102072DA5E006D5379 /* Amazing_Kids.ttf */,
 			);
 			path = snap;
 			sourceTree = "<group>";
@@ -184,6 +195,7 @@
 		C1FB23E8205603C000D941AE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C10BE78D205DC34300C84B2E /* LinkViewController.swift */,
 				C18DA8DF205201BE0050FE55 /* MainViewController.swift */,
 				C1FB23E92056044300D941AE /* GalleryViewController.swift */,
 				C1FB23652054D00D00D941AE /* LeftMenuViewController.swift */,
@@ -294,6 +306,7 @@
 				C1FB23FE2056055300D941AE /* INSPhotoGallery.bundle in Resources */,
 				C18DA8D62051DBE20050FE55 /* LaunchScreen.storyboard in Resources */,
 				C18DA8D32051DBE20050FE55 /* Assets.xcassets in Resources */,
+				C12349112072DB18006D5379 /* Amazing_Kids.ttf in Resources */,
 				C18DA8D12051DBE20050FE55 /* Main.storyboard in Resources */,
 				C1FB24042056055300D941AE /* Info.plist in Resources */,
 			);
@@ -331,6 +344,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/INSNibLoading/INSNibLoading.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -338,6 +353,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/INSNibLoading.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -374,15 +391,18 @@
 				C1FB23EC205604E900D941AE /* GalleryCollectionViewCell.swift in Sources */,
 				C18DA8DE2051ED970050FE55 /* LoginTextField.swift in Sources */,
 				C1D411BA20586A45002813D8 /* DGElasticPullToRefreshView.swift in Sources */,
+				C1B5F8B7206B01F700E3C9CE /* Utils.swift in Sources */,
 				C1D411BB20586A45002813D8 /* DGElasticPullToRefreshConstants.swift in Sources */,
 				C1FB236A2055098C00D941AE /* SettingsViewController.swift in Sources */,
 				C1FB23FF2056055300D941AE /* INSScalingImageView.swift in Sources */,
 				C1FB23FA2056055300D941AE /* INSPhotosDataSource.swift in Sources */,
+				C10491C620637EB90055B07C /* UserInfo.swift in Sources */,
 				C1FB24022056055300D941AE /* INSPhoto.swift in Sources */,
 				C1D411BD20586A45002813D8 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				C1FB23FD2056055300D941AE /* INSPhotosInteractionAnimator.swift in Sources */,
 				C1D411BC20586A45002813D8 /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				C18DA8CE2051DBE20050FE55 /* LoginViewController.swift in Sources */,
+				C10BE78E205DC34300C84B2E /* LinkViewController.swift in Sources */,
 				C1FB23FB2056055300D941AE /* INSPhotosViewController.swift in Sources */,
 				C18DA8CC2051DBE20050FE55 /* AppDelegate.swift in Sources */,
 				C1FB23662054D00D00D941AE /* LeftMenuViewController.swift in Sources */,

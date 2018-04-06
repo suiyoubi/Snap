@@ -11,16 +11,33 @@ import UIKit
 class GalleryViewController: UIViewController {
 
     @IBOutlet weak var alertButton: UIBarButtonItem!
+
     @IBOutlet weak var MenuButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
-    lazy var photos: [INSPhotoViewable] = {
+    var photos: [INSPhotoViewable] = {
         return [
             INSPhoto(image: UIImage(named: "1")!, thumbnailImage: UIImage(named: "1")!),
             INSPhoto(image: UIImage(named: "2")!, thumbnailImage: UIImage(named: "2")!),
-            INSPhoto(image: UIImage(named: "3")!, thumbnailImage: UIImage(named: "3")!)
+            //INSPhoto(image: UIImage(named: "3")!, thumbnailImage: UIImage(named: "3")!)
+            INSPhoto(imageURL: URL(string: "http://35.230.95.204/6E301102-CC70-4802-B747-6BF57275A786.jpeg"), thumbnailImageURL: URL(string: "http://35.230.95.204/6E301102-CC70-4802-B747-6BF57275A786.jpeg")),
+            
         ]
     }()
     
+    func setupPhotoArray() {
+        let user = UserInfo.getInstace()
+        let array = user.getPhotos()
+        self.photos.removeAll(keepingCapacity: true)
+        for eachPhotoName in array {
+            //var editedPhotoName:String = String(eachPhotoName.suffix(eachPhotoName.count - 1))
+            //editedPhotoName = String(editedPhotoName.prefix(editedPhotoName.count - 1))
+            
+            let editedPhotoName = Utils.deleteQuote(s: eachPhotoName)
+            let url = "http://35.230.95.204/" + editedPhotoName
+            print(url)
+            self.photos.append(INSPhoto(imageURL: URL(string: url), thumbnailImageURL: URL(string: url)))
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,10 +47,12 @@ class GalleryViewController: UIViewController {
         MenuButton.target = revealViewController()
         MenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
         
+        setupPhotoArray()
+        
         for photo in photos {
             if let photo = photo as? INSPhoto {
-                
-                photo.attributedTitle = NSAttributedString(string: "Example caption text\ncaption text", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+                let photoName = photo.imageURL?.absoluteString
+                //photo.attributedTitle = NSAttributedString(string: photoName!, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
                 
             }
         }
@@ -42,7 +61,7 @@ class GalleryViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.tintColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 255/255, alpha: 1)
-        navigationController?.navigationBar.barTintColor = UIColor(displayP3Red: 255/255, green: 87/255, blue: 35/255, alpha: 1)
+        navigationController?.navigationBar.barTintColor = UIColor(displayP3Red: 119/255, green: 184/255, blue: 239/255, alpha: 1)
         
         
         
@@ -51,11 +70,13 @@ class GalleryViewController: UIViewController {
         collectionView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: {
                 print("1")
+                let user = UserInfo.getInstace()
+                user.selfUpdatePhotos()
                 self?.collectionView.dg_stopLoading()
                 print("2")
             })
             }, loadingView: loadingView)
-        collectionView.dg_setPullToRefreshFillColor(UIColor(displayP3Red: 255/255, green: 87/255, blue: 35/255, alpha: 1))
+        collectionView.dg_setPullToRefreshFillColor(UIColor(displayP3Red: 119/255, green: 184/255, blue: 239/255, alpha: 1))
         collectionView.dg_setPullToRefreshBackgroundColor(collectionView.backgroundColor!)
         
     }

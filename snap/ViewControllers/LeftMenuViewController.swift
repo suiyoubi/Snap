@@ -14,12 +14,11 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     var iconImageArray:Array = [UIImage]()
     
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        menuListNameArray = ["Home", "Link your Account", "Gallery", "Settings", "Logout"]
+        menuListNameArray = ["Home", "Link your Account", "Gallery", "Logout"]
         iconImageArray = [UIImage(named: "home")!, UIImage(named: "link")!,UIImage(named: "gallery")!,UIImage(named: "settings")!,UIImage(named: "logout")!]
         // Do any additional setup after loading the view.
         
@@ -27,9 +26,8 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func setupUserInfo() {
-        usernameLabel.text = "水曜日"
-        usernameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        userIcon.image = UIImage(named: "profile_icon")
+        let user = UserInfo.getInstace()
+        usernameLabel.text = user.getUsername()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -63,18 +61,19 @@ class LeftMenuViewController: UIViewController, UITableViewDelegate, UITableView
             
             revealViewController.pushFrontViewController(newFrontController, animated: true)
         }
-        if cell.labelName.text! == "Settings" {
-
-            let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-            let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
-            
-            revealViewController.pushFrontViewController(newFrontController, animated: true)
-        }
+        
         if cell.labelName.text! == "Gallery" {
             
             let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "GalleryViewController") as! GalleryViewController
+            let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
+            
+            revealViewController.pushFrontViewController(newFrontController, animated: true)
+        }
+        if cell.labelName.text! == "Link your Account" {
+            
+            let mainstoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewcontroller = mainstoryboard.instantiateViewController(withIdentifier: "LinkViewController") as! LinkViewController
             let newFrontController = UINavigationController.init(rootViewController: newViewcontroller)
             
             revealViewController.pushFrontViewController(newFrontController, animated: true)
